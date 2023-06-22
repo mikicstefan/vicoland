@@ -1,0 +1,16 @@
+jms_serializer:
+    handlers:
+        datetime:
+            default_format: 'c'
+    default_context:
+        serialization:
+            serialize_null: true
+            version: ~
+    visitors:
+        xml_serialization:
+            encoding: 'UTF-8'
+        json_serialization:
+            options:
+                - JSON_UNESCAPED_SLASHES
+                - JSON_PRESERVE_ZERO_FRACTION
+                - JSON_UNESCAPED_UNICODE
