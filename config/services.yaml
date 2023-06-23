@@ -17,8 +17,23 @@ services:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
-            - '../src/Entity/'
+#            - '../src/Entity/' # commented out since we want to autowire it in services
             - '../src/Kernel.php'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+
+    ### GLOBAL SERVICES ###
+
+    App\Core\REST\Service\ApiSerializerService: ~
+
+    ### GLOBAL SUBSCRIBERS/LISTENERS ###
+
+    App\Core\REST\Subscriber\RequestSubscriber:
+        tags:
+            - { name: kernel.event_subscriber }
+
+    App\Core\REST\Subscriber\ResponderSubscriber:
+        tags:
+            - { name: kernel.event_subscriber }
