@@ -6,6 +6,9 @@ use App\Domain\VotingSystem\Entity\Client;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
+/**
+ * Class ClientFixtures
+ */
 class ClientFixtures extends Fixture
 {
   public const TEST_CLIENT_REFERENCE = 'client';
