@@ -1,6 +1,11 @@
 doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
+        charset: utf8mb4
+        default_table_options:
+            charset: utf8mb4
+            collation: utf8mb4_unicode_ci # instead collate from version of dbal 3.*
+            engine: InnoDB
 
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
@@ -13,12 +18,12 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            Todo:
+            VotingSystem:
                 is_bundle: false
                 type: attribute
-                dir: '%kernel.project_dir%/src/Domain/Todo/Entity'
-                prefix: 'App\Domain\Todo\Entity'
-                alias: api_todos
+                dir: '%kernel.project_dir%/src/Domain/VotingSystem/Entity'
+                prefix: 'App\Domain\VotingSystem\Entity'
+                alias: api_voting_system
 
 #when@test:
 #    doctrine:

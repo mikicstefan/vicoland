@@ -54,7 +54,7 @@ class Kernel extends BaseKernel
 
     $confDirs = [
       $this->getProjectDir() . '/config',
-      __DIR__ . '/Todo/config',
+      __DIR__ . '/VotingSystem/config',
     ];
 
     foreach ($confDirs as $confDir) {
@@ -84,7 +84,7 @@ class Kernel extends BaseKernel
   {
     $confDirs = [
         $this->getProjectDir() . '/config',
-        __DIR__ . '/Todo/config',
+        __DIR__ . '/VotingSystem/config',
     ];
 
     foreach ($confDirs as $confDir) {
