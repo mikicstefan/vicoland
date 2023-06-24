@@ -7,9 +7,9 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 /**
- * Class ClientFixtures
+ * Class ClientFixture
  */
-class ClientFixtures extends Fixture
+class ClientFixture extends Fixture
 {
   public const TEST_CLIENT_REFERENCE = 'client';
   public const TEST_CLIENT_USERNAME = 'Test Username ';

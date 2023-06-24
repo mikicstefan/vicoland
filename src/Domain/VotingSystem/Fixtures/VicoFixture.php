@@ -7,9 +7,9 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 /**
- * Class VicoFixtures
+ * Class VicoFixture
  */
-class VicoFixtures extends Fixture
+class VicoFixture extends Fixture
 {
   public const TEST_VICO_REFERENCE = 'vico';
   public const TEST_VICO_NAME = 'Team ';

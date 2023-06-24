@@ -14,19 +14,8 @@ use Exception;
  */
 trait Updated
 {
-  #[Column(name: "updated", type: "datetime")]
+  #[Column(name: "updated", type: "datetime", nullable: true)]
   private DateTime $updated;
-
-  /**
-   * Gets triggered only on insert
-   * @return void
-   * @throws Exception
-   */
-  #[PrePersist]
-  public function onPrePersist(): void
-  {
-    $this->updated = new DateTime();
-  }
 
   /**
    * Gets triggered every time on update
