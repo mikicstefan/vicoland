@@ -14,7 +14,7 @@ final class Version20230624095436 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Create Project table and define one-to-many relationships to client and vico tables';
     }
 
     public function up(Schema $schema): void
