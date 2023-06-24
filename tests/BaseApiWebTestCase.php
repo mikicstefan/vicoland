@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+namespace App\Tests;
 
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\FixtureInterface;
