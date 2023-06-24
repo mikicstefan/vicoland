@@ -30,7 +30,7 @@ class Vico
   private string $name;
 
   /**
-   * Client can have many projects
+   * Vico can have many projects
    *
    * @var ArrayCollection|Collection
    */
