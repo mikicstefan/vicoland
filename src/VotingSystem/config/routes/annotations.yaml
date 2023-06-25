@@ -1,0 +1,4 @@
+VotingSystem:
+  resource: ../../Action/
+  type: annotation
+  prefix: 'api/v1'
