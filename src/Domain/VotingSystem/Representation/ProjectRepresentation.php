@@ -25,24 +25,20 @@ class ProjectRepresentation
    */
   private VicoRepresentation $vicoRepresentation;
 
-  /**
-   * @param int $id
-   * @param string $title
-   * @param Client $creator
-   * @param Vico|null $vico
-   * @param int|null $rating
-   * @param null $review
-   * @param int|null $communicationRating
-   * @param int|null $qualityOfWorkRating
-   * @param int|null $valueForMoneyRating
-   * @param DateTime $created
-   * @param DateTime|null $updated
-   */
+    /**
+     * @param int $id
+     * @param string $title
+     * @param int|null $rating
+     * @param null $review
+     * @param int|null $communicationRating
+     * @param int|null $qualityOfWorkRating
+     * @param int|null $valueForMoneyRating
+     * @param DateTime $created
+     * @param DateTime|null $updated
+     */
   private function __construct(
     private int      $id,
     private string   $title,
-    private Client $creator,
-    private ?Vico $vico,
     private ?int $rating,
     private $review = null,
     private ?int $communicationRating,
@@ -63,8 +59,6 @@ class ProjectRepresentation
     return new self(
       $project->getId(),
       $project->getTitle(),
-      $project->getCreator(),
-      $project->getVico(),
       $project->getRating(),
       $project->getReview(),
       $project->getCommunicationRating(),

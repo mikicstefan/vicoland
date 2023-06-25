@@ -30,6 +30,10 @@ services:
 
     ### GLOBAL SUBSCRIBERS/LISTENERS ###
 
+    App\Core\REST\Subscriber\ExceptionSubscriber:
+        tags:
+            - { name: kernel.event_subscriber }
+
     App\Core\REST\Subscriber\RequestSubscriber:
         tags:
             - { name: kernel.event_subscriber }
