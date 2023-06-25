@@ -15,6 +15,7 @@
         "nelmio/api-doc-bundle": "*",
         "ramsey/uuid": "^4.7",
         "sensio/framework-extra-bundle": "^6.2",
+        "symfony/asset": "6.3.*",
         "symfony/console": "6.3.*",
         "symfony/dotenv": "6.3.*",
         "symfony/flex": "^2",
@@ -22,8 +23,11 @@
         "symfony/http-client": "6.3.*",
         "symfony/messenger": "6.3.*",
         "symfony/runtime": "6.3.*",
+        "symfony/twig-bundle": "6.3.*",
         "symfony/validator": "6.3.*",
-        "symfony/yaml": "6.3.*"
+        "symfony/yaml": "6.3.*",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
         "dama/doctrine-test-bundle": "^7.2",

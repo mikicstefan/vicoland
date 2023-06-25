@@ -1,0 +1,147 @@
+nelmio_api_doc:
+  documentation:
+    components:
+      securitySchemes:
+        Bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      schemas:
+        InvalidAPITokenError:
+          description: Unauthorized
+          type: object
+          properties:
+            message:
+              type: string
+              description: Given API token is not valid
+        NoAuthorizationHeaderError:
+          description: Unauthorized
+          type: object
+          properties:
+            message:
+              type: string
+              description: Authorization header is missing
+        BadRequestError:
+          description: Bad request
+          properties:
+            message:
+              type: string
+            exception_class:
+              type: string
+            line:
+              type: string
+            description:
+              type: string
+            errors:
+              type: array
+              items:
+                type: string
+        NotFoundError:
+          description: Not Found
+          properties:
+            message:
+              type: string
+            exception_class:
+              type: string
+            line:
+              type: string
+            description:
+              type: string
+            errors:
+              type: array
+              items:
+                type: string
+        UnprocessableError:
+          description: Unprocessable Content
+          properties:
+            message:
+              type: string
+            exception_class:
+              type: string
+            line:
+              type: string
+            description:
+              type: string
+            errors:
+              type: array
+              items:
+                type: string
+        ConflictError:
+          description: Conflict
+          properties:
+            message:
+              type: string
+            exception_class:
+              type: string
+            line:
+              type: string
+            description:
+              type: string
+            errors:
+              type: array
+              items:
+                type: string
+        InternalServerError:
+          description: API is not healthy (cannot connect with database)
+          properties:
+            message:
+              type: string
+            exception_class:
+              type: string
+            line:
+              type: string
+            description:
+              type: string
+            errors:
+              type: array
+              items:
+                type: string
+        GoneError:
+          description: Gone (non-existing resource)
+          properties:
+            message:
+              type: string
+            exception_class:
+              type: string
+            line:
+              type: string
+            description:
+              type: string
+            errors:
+              type: array
+              items:
+                type: string
+
+        ClientRepresentation:
+          type: object
+          properties:
+            username:
+              type: string
+            password:
+              type: string
+            first_name:
+              type: string
+            last_name:
+              type: string
+
+        VicoRepresentation:
+          type: object
+          properties:
+            name:
+              type: string
+
+        ProjectRepresentation:
+          type: object
+          properties:
+            title:
+              type: string
+            client:
+              $ref: '#/components/schemas/ClientRepresentation'
+            vico:
+              $ref: '#/components/schemas/VicoRepresentation'
+            communication_rating:
+              type: integer
+            quality_of_work_rating:
+              type: integer
+            value_for_money_rating:
+              type: integer
