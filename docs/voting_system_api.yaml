@@ -1,0 +1,80 @@
+nelmio_api_doc:
+  documentation:
+    #    servers:
+    #      - url: http://api.example.com/unsafe
+    #        description: API over HTTP
+    #      - url: https://api.example.com/secured
+    #        description: API over HTTPS
+    info:
+      title: Vicoland
+      description: Voting System for Vicoland, that we use as feedback to improve next matching
+      version: 1.0.0
+
+    security:
+      - Bearer: []
+
+    paths:
+      /api/v1/project/{project_id}:
+        patch:
+          tags:
+            - Project
+          summary: Rate project
+          description: Client can rate, review and put additional ratings which are optional to project
+          parameters:
+            - name: project_id
+              in: path
+              description: Id of project whose values we want to update.
+              required: true
+              schema:
+                type: string
+          requestBody:
+            description: Update project.
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    rating:
+                      description: The field used to update project rating (range 1 to 5).
+                      type: integer
+                      example: 5
+                    review:
+                      description: The field used to update project review.
+                      type: string
+                      example: Test text that will be added as review
+                    communication_rating:
+                      description: The field used to update project communication rating (range 1 to 5).
+                      type: integer
+                      example: 3
+                    quality_of_work_rating:
+                      description: The field used to update project quality of work rating (range 1 to 5).
+                      type: integer
+                      example: 4
+                    value_for_money_rating:
+                      description: The field used to update project value for money rating (range 1 to 5).
+                      type: integer
+                      example: 5
+
+          responses:
+            '200':
+              description: Returns updated project
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/ProjectRepresentation'
+            '400':
+              description: Bad request i.e. when some field is not provided in request
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/BadRequestError'
+            '404':
+              description: Not Found i.e. when project is not found.
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/NotFoundError'
+
+imports:
+  - { resource: 'schemes.yaml' }

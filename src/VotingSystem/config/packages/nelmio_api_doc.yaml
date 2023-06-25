@@ -1,0 +1,7 @@
+nelmio_api_doc:
+  areas:
+    default:
+      disable_default_routes: true
+
+imports:
+  - { resource: '../../../../docs/voting_system_api.yaml' }
