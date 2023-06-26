@@ -53,7 +53,9 @@ Society excited by cottage private an it esteems. Fully begin on by wound an. Gi
         'value_for_money_rating' => self::TEST_PROJECT_RETURN_VALUE_RATING
       ],
       [],
-      []
+      [
+        'HTTP_authorization' => $this->authToken
+      ]
     );
 
     $response = (array)json_decode((string) $this->client->getResponse()->getContent(), true);
@@ -83,7 +85,9 @@ Society excited by cottage private an it esteems. Fully begin on by wound an. Gi
         'value_for_money_rating' => self::TEST_PROJECT_RETURN_VALUE_RATING
       ],
       [],
-      []
+      [
+        'HTTP_authorization' => $this->authToken
+      ]
     );
 
     /** @var array<string> $response */
@@ -111,7 +115,9 @@ Society excited by cottage private an it esteems. Fully begin on by wound an. Gi
         'value_for_money_rating' => self::TEST_PROJECT_RETURN_VALUE_RATING
       ],
       [],
-      []
+      [
+        'HTTP_authorization' => $this->authToken
+      ]
     );
 
     /** @var array<string> $response */
@@ -141,7 +147,9 @@ Society excited by cottage private an it esteems. Fully begin on by wound an. Gi
         'value_for_money_rating' => self::TEST_PROJECT_RETURN_VALUE_RATING
       ],
       [],
-      []
+      [
+        'HTTP_authorization' => $this->authToken
+      ]
     );
 
 
@@ -179,7 +187,9 @@ Society excited by cottage private an it esteems. Fully begin on by wound an. Gi
         'value_for_money_rating' => self::TEST_PROJECT_RETURN_VALUE_RATING
       ],
       [],
-      []
+      [
+        'HTTP_authorization' => $this->authToken
+      ]
     );
 
     $response = (array)json_decode((string) $this->client->getResponse()->getContent(), true);
@@ -213,7 +223,9 @@ Society excited by cottage private an it esteems. Fully begin on by wound an. Gi
         'value_for_money_rating' => self::TEST_PROJECT_RETURN_VALUE_RATING
       ],
       [],
-      []
+      [
+        'HTTP_authorization' => $this->authToken
+      ]
     );
 
     $response = (array)json_decode((string) $this->client->getResponse()->getContent(), true);
@@ -247,7 +259,9 @@ Society excited by cottage private an it esteems. Fully begin on by wound an. Gi
         'value_for_money_rating' => self::TEST_PROJECT_RETURN_VALUE_RATING
       ],
       [],
-      []
+      [
+        'HTTP_authorization' => $this->authToken
+      ]
     );
 
     $response = (array)json_decode((string) $this->client->getResponse()->getContent(), true);
@@ -281,7 +295,9 @@ Society excited by cottage private an it esteems. Fully begin on by wound an. Gi
         'value_for_money_rating' => self::TEST_PROJECT_RETURN_VALUE_RATING
       ],
       [],
-      []
+      [
+        'HTTP_authorization' => $this->authToken
+      ]
     );
 
     $response = (array)json_decode((string) $this->client->getResponse()->getContent(), true);
@@ -314,6 +330,7 @@ Society excited by cottage private an it esteems. Fully begin on by wound an. Gi
       [],
       [
         'CONTENT_TYPE' => 'application/json',
+        'HTTP_authorization' => $this->authToken
       ],
       json_encode([
         'rating' => self::TEST_PROJECT_RATING,
@@ -354,6 +371,7 @@ Society excited by cottage private an it esteems. Fully begin on by wound an. Gi
       [],
       [
         'CONTENT_TYPE' => 'application/json',
+        'HTTP_authorization' => $this->authToken
       ],
       json_encode([
         'rating' => self::TEST_PROJECT_RATING,
@@ -394,7 +412,9 @@ Society excited by cottage private an it esteems. Fully begin on by wound an. Gi
         'value_for_money_rating' => self::TEST_PROJECT_RETURN_VALUE_RATING
       ],
       [],
-      []
+      [
+        'HTTP_authorization' => $this->authToken
+      ]
     );
 
     $response = (array)json_decode((string) $this->client->getResponse()->getContent(), true);
@@ -428,9 +448,70 @@ Society excited by cottage private an it esteems. Fully begin on by wound an. Gi
         'review' => self::TEST_PROJECT_REVIEW_LONG
       ],
       [],
-      []
+      [
+        'HTTP_authorization' => $this->authToken
+      ]
     );
 
     $this->assertResponseIsSuccessful();
+  }
+
+  /**
+   * Non-valid auth token is provided.
+   * Unauthorized exception is triggered
+   *
+   * @return void
+   */
+  public function testRateProjectWithoutAuthToken(): void
+  {
+    $this->addFixture(new ClientFixture());
+    $this->addFixture(new ProjectWithoutVicoFixture());
+    $this->executeFixtures();
+
+    /** @var Project $project */
+    $project = $this->getFixtureByReference(ProjectWithoutVicoFixture::TEST_PROJECT_WITHOUT_VICO_REFERENCE);
+
+    $this->testWithoutAuthTokenBase(Request::METHOD_PATCH, 'api/v1/project/' . $project->getId());
+  }
+
+  /**
+   * Non-valid auth token is provided.
+   * Unauthorized exception is triggered
+   *
+   * @return void
+   */
+  public function testRateProjectWithInvalidAuthToken(): void
+  {
+    $this->addFixture(new ClientFixture());
+    $this->addFixture(new ProjectWithoutVicoFixture());
+    $this->executeFixtures();
+
+    /** @var Project $project */
+    $project = $this->getFixtureByReference(ProjectWithoutVicoFixture::TEST_PROJECT_WITHOUT_VICO_REFERENCE);
+
+    $this->testWithInvalidAuthTokenBase(
+      Request::METHOD_PATCH,
+      'api/v1/project/' . $project->getId()
+    );
+  }
+
+  /**
+   * Testing case when there are no authorization
+   *
+   * @return void
+   */
+  public function testRateProjectWithoutAuthorization()
+  {
+    $this->addFixture(new ClientFixture());
+    $this->addFixture(new ProjectWithoutVicoFixture());
+    $this->executeFixtures();
+
+    /** @var Project $project */
+    $project = $this->getFixtureByReference(ProjectWithoutVicoFixture::TEST_PROJECT_WITHOUT_VICO_REFERENCE);
+
+    $this->testWithoutAuthorizationBase(
+      Request::METHOD_PATCH,
+      'api/v1/project/' . $project->getId()
+    );
   }
 }

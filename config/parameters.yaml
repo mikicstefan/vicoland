@@ -1,0 +1,2 @@
+parameters:
+  voting.system.authToken: '%env(AUTH_TOKEN_VOTING_SYSTEM)%'
