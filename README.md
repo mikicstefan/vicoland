@@ -1,4 +1,4 @@
-# Vicoland -Voting System
+# Vicoland - Voting System
 
 * [Intro](#intro)
 * [Setup](#setup)
@@ -13,6 +13,7 @@ and wanted to demonstrate how to use it to you guys, I chose it for this project
 
 I also added things that wasn't mentioned in a task, because i felt without it project won't be representable, like:
 * Custom Authenticator as a way of authorization
+  * to do so in request add header `Authorization` with value you put in `AUTH_TOKEN_VOTING_SYSTEM` which is placed in `.env` file
 * Swagger for endpoint
 * seeders for filling database with test values
 
@@ -36,7 +37,7 @@ fields and `communication_rating`, `quality_of_work_rating`, `value_for_money_ra
 
 * clone project
 * run `composer install` to install necessary dependencies
-* copy .env.example to .env
+* copy `.env.example` to `.env`
 * migrate database `php bin/console doctrine:migrations:migrate`
 * run fixtures `php bin/console doctrine:fixtures:load`
   * this will fill database with some test values in Client, Vico and Project tables
@@ -47,7 +48,7 @@ To run locally start symfony server with command `symfony server:start`
 ### Domain
 
 #### VotingSystem
-- in Action, contain endpoint `PATCH /api/v1/project/{project_id}` that handle rating project
+- Action of Voting System, contain endpoint `PATCH /api/v1/project/{project_id}` that handle rating project
 
 ## Swagger
 If server running, access `http://localhost:8000/api/doc` endpoint to see Swagger documentation
@@ -64,9 +65,8 @@ If server running, access `http://localhost:8000/api/doc` endpoint to see Swagge
     }
 ```
 2. add documentation for Swagger
-* go to the correct yaml file - depending on API _pr/pmb/fb_api_v1.yaml_
+* go to the correct yaml file - `voting_system_api.yaml`
 * add new endpoint under the key _paths_
-* example of adding GET endpoint ``/api/v1/merchants/{merchant_uuid}`` to the _pmb_api_v1.yaml_
 ```yaml
         paths:
         /api/v1/project/{project_id}:
