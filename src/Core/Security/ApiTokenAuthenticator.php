@@ -44,7 +44,11 @@ class ApiTokenAuthenticator extends AbstractAuthenticator
    */
   public function supports(Request $request): ?bool
   {
-    return $request->headers->has(self::AUTHORIZATION_HEADER_KEY);
+    if (empty($request->headers->all(self::AUTHORIZATION_HEADER_KEY))) {
+      throw new CustomUserMessageAuthenticationException('Authorization header is missing', code: 401);
+    };
+
+    return true;
   }
 
   /**
@@ -55,14 +59,10 @@ class ApiTokenAuthenticator extends AbstractAuthenticator
    */
   public function authenticate(Request $request): Passport
   {
-    if (empty($request->headers->all(self::AUTHORIZATION_HEADER_KEY))) {
-      throw new CustomUserMessageAuthenticationException('Authorization header is missing');
-    };
-
     $getAuthToken = $this->params->get('voting.system.authToken');
 
     $authorization = $request->headers->get(self::AUTHORIZATION_HEADER_KEY) ?? '';
-    
+
     $apiToken = str_contains($authorization, 'Bearer') ? substr($authorization, strlen('Bearer ')) : $authorization;
 
     if (null == $apiToken) {

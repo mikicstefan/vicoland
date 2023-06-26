@@ -34,6 +34,11 @@ abstract class BaseApiWebTestCase extends WebTestCase
    */
   private ?ContainerAwareLoader $fixtureLoader;
 
+  /**
+   * @var string
+   */
+  protected string $authToken;
+
   public function setUp(): void
   {
     // This calls KernelTestCase::bootKernel(), and creates a
@@ -42,6 +47,9 @@ abstract class BaseApiWebTestCase extends WebTestCase
     $this->entityManager = self::getContainer()->get('doctrine')->getManager();
     $this->getFixtureLoader();
     $this->getFixtureExecutor();
+
+    // get auth token for tests
+    $this->authToken = strval($this->client->getContainer()->getParameter('voting.system.authToken'));
   }
 
   /**
@@ -112,7 +120,7 @@ abstract class BaseApiWebTestCase extends WebTestCase
       $path
     );
 
-    $this->assertResponseStatusCodeSame(Response::HTTP_UNAUTHORIZED);
+    $this->assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);
   }
 
   /**
@@ -152,6 +160,6 @@ abstract class BaseApiWebTestCase extends WebTestCase
       ]
     );
 
-    $this->assertResponseStatusCodeSame(Response::HTTP_UNAUTHORIZED);
+    $this->assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);
   }
 }
