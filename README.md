@@ -1,5 +1,4 @@
 # Vicoland -Voting System
-# Rectangle Health - PMB Forms 2.0 backend
 
 * [Intro](#intro)
 * [Setup](#setup)
