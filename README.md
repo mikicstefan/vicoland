@@ -4,7 +4,6 @@
 * [Setup](#setup)
 * [Running app](#running-app)
   * [Domains](#domains)
-  * [Add custom hosts](#add-custom-hosts)
 * [Swagger](#swagger)
 
 ## Intro
